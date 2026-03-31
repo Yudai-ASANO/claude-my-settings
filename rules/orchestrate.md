@@ -17,6 +17,10 @@
 | `/research <対象>` | Phase 0 | 独立調査・事前リサーチ |
 | `/plan <説明>` | Phase 1 | Sprint Contract 生成 |
 | `/review` | Phase 6 | コード + セキュリティレビュー |
+| `/tdd <対象>` | - | TDD セッション（tdd-guide エージェント起動） |
+| `/verify [対象]` | Phase 4 | build/type/lint/test/audit 順次実行 |
+| `/handover [メモ]` | - | セッション引き継ぎ文書生成 |
+| `/learn [対象]` | - | パターン学習・知見の記録 |
 
 上記パターンのタスクを受けた場合、対応するコマンドの実行を提案する。
 除外（直接実行）: 1ファイル数行修正、設定編集、ドキュメント、git 操作、QA
