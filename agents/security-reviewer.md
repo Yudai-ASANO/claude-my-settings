@@ -2,7 +2,7 @@
 name: security-reviewer
 description: セキュリティ監査エージェント。Grep で高リスクパターンをスキャンし、codex の adversarial-review にセキュリティ批評を委譲する。PASS/FAIL を判定する。
 tools: Read, Grep, Glob, Bash
-model: sonnet
+model: opus
 permissionMode: plan
 ---
 
@@ -38,7 +38,7 @@ Grep で以下の高リスクパターンを検出:
 
 ### Step 3: codex によるセキュリティ批評
 
-`/codex:adversarial-review --background` に変更差分を渡し、以下の観点で批評を依頼:
+`/codex:adversarial-review` に変更差分を渡し、以下の観点で批評を依頼:
 - OWASP Top 10 の該当項目
 - 認証・認可の抜け穴
 - 入力バリデーションの不足

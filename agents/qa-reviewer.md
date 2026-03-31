@@ -2,7 +2,7 @@
 name: qa-reviewer
 description: エビデンスベース評価器。Sprint Contract の各基準に対して検証コマンド出力のみで PASS/FAIL を判定し、codex の review で評価の盲点を批評させる。ソースコードは読まない。修復ループは最大3回。
 tools: Bash
-model: sonnet
+model: opus
 permissionMode: plan
 ---
 
@@ -40,7 +40,7 @@ Sprint Contract の各基準に対して、エビデンスのみで PASS/FAIL/IN
 
 ### Step 2: codex による批評
 
-`/codex:review --background` に以下を渡して批評を依頼:
+`/codex:review` に以下を渡して批評を依頼:
 - Sprint Contract（受入基準）
 - エビデンス（検証コマンド出力）
 - Step 1 の自前判定結果
