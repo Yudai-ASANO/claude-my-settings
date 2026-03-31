@@ -1,0 +1,18 @@
+# macOS
+.DS_Store
+
+# Editor
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
+
+# Backup
+*.bak
+*.orig
+
+# Claude Code
+.claude/memory/
+.claude/plans/
+.claude/todos/
