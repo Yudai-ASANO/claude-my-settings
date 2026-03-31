@@ -46,6 +46,8 @@ Research → Plan → Implement の3フェーズ構造:
 - Task ツールで明示的パラメータ指定して起動する
 - サブエージェントの作業はコンテキストの 50% 以内に収める
 - worktree 分離で並列実行可能
+- MEMORY.md は同一 git リポジトリ内の全 worktree で共有される（knowledge base の一貫性確保）
+- 並列実行中の MEMORY.md 書き込み競合を回避するため、書き込みが必要なタスクは逐次配置する
 
 ## コンテキストウィンドウ構造
 
