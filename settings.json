@@ -84,13 +84,11 @@
         "matcher": "tool == \"Write\" && tool_input.file_path matches \"(CLAUDE|AGENTS)\\\\.md$\"",
         "hooks": [{ "type": "command", "command": "$HOME/.claude/hooks/check-doc-size.sh" }]
       }
-    ],
-    "StatusLine": [
-      {
-        "matcher": "",
-        "hooks": [{ "type": "command", "command": "python3 $HOME/.claude/hooks/statusline.py" }]
-      }
     ]
+  },
+  "statusLine": {
+    "type": "command",
+    "command": "python3 $HOME/.claude/hooks/statusline.py"
   },
   "enabledPlugins": {
     "security-guidance@claude-plugins-official": true,
