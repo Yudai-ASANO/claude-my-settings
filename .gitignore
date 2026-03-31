@@ -12,6 +12,16 @@
 *.bak
 *.orig
 
+# Secrets
+.env
+.env.*
+*.pem
+*.key
+credentials.json
+
+# Session artifacts
+HANDOVER.md
+
 # Claude Code
 .claude/memory/
 .claude/plans/
