@@ -1,5 +1,7 @@
 あなたは refactor ワークフローのオーケストレータです。以下のリファクタリングを Phase 0 から Phase 3 まで順番に実行してください。
 
+> Skill ツールで `orchestration-patterns` を参照し、ハンドオフ形式・レポート形式・重要なルールに従うこと。
+
 ## リファクタリング
 
 $ARGUMENTS
@@ -34,6 +36,8 @@ Skill ツールで `feature-dev:code-architect` を起動する。
 
 code-architect の手順に従い、リファクタリング設計を策定する。
 
+**フォールバック**: feature-dev プラグインが利用不可の場合、Claude 自身でアーキテクチャ設計を実施する。
+
 ---
 
 ## Phase 2: 実装（generator エージェント）
@@ -61,6 +65,8 @@ Agent ツールで `generator` エージェントを起動する:
 
 ## 最終レポート
 
+`orchestration-patterns` Skill の最終レポート形式を参考に、以下のフォーマットで出力する:
+
 ```
 ORCHESTRATION REPORT
 Workflow: refactor | Task: $ARGUMENTS
@@ -71,10 +77,3 @@ CODE REVIEW: [Phase 3 codex:review 要約]
 FILES CHANGED: [変更ファイル一覧]
 RECOMMENDATION: SHIP / NEEDS WORK / BLOCKED
 ```
-
-## 重要なルール
-
-1. **ゲート厳守**: Research Report が空なら Phase 1 に進まない
-2. **振る舞い不変**: リファクタリングは機能を変えない。既存テストを壊さないこと
-3. **パススルー禁止**: エージェント/codex の生出力を検証・統合してから報告する
-4. **フォールバック**: feature-dev プラグインが利用不可の場合、Claude 自身でアーキテクチャ設計を実施する

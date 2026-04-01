@@ -1,5 +1,7 @@
 あなたは feature ワークフローのオーケストレータです。以下のタスクを Phase 0 から Phase 7 まで順番に実行してください。各フェーズのゲート条件を満たさない限り次に進まないこと。
 
+> Skill ツールで `orchestration-patterns` を参照し、並列ルール・品質ゲート・エビデンス収集・ハンドオフ形式・レポート形式・重要なルールに従うこと。
+
 ## タスク
 
 $ARGUMENTS
@@ -55,19 +57,7 @@ Agent ツールで `plan-reviewer` エージェントを起動する:
 ## Phase 3: 実装（generator エージェント）
 
 Sprint Contract の実装タスクテーブルに従い、Agent ツールで `generator` エージェントを起動する。
-
-### 並列/逐次の判断
-
-Sprint Contract の「依存」列で判断する:
-- **依存列が「なし」**: `isolation: worktree` で worktree 分離し、複数 generator を並列起動する
-- **依存列にタスク名がある**: 依存先タスクの完了後に逐次起動する
-- **全タスクが依存関係を持つ場合**: 依存順に1つずつ逐次起動する
-
-### 並列起動時の制約
-
-- 各 generator は割り当てスコープ外のファイルを変更しない
-- MEMORY.md への書き込みが必要なタスクは並列ではなく逐次に配置する
-- 1インスタンスあたりコンテキストの 50% 以内で完了させる
+並列/逐次の判断と制約は `orchestration-patterns` Skill の並列実行ルールに従う。
 
 各 generator への入力:
 
@@ -83,16 +73,7 @@ Sprint Contract の「依存」列で判断する:
 
 ## Phase 4: エビデンス収集
 
-Sprint Contract の各検証コマンドを Bash ツールで実行し、以下を記録する:
-
-```
-### エビデンス
-| # | 基準 | コマンド | exit code | stdout (末尾30行) | stderr |
-|---|------|---------|-----------|------------------|--------|
-```
-
-- 各コマンドの exit code、stdout（末尾30行）、stderr（非空の場合、末尾10行）を記録
-- エビデンスは加工せずそのまま Phase 5 に渡す
+`orchestration-patterns` Skill のエビデンス収集プロトコルに従い、Sprint Contract の各検証コマンドを実行して記録する。
 
 **ゲート**: 全基準に対してコマンド出力があること。欠落があれば該当コマンドを再実行。
 
@@ -119,7 +100,7 @@ Agent ツールで `qa-reviewer` エージェントを起動する:
 
 ## Phase 6: 最終レビュー（並列実行）
 
-以下の2つを Agent ツールで**同一メッセージ内に並列**で起動する（独立した作業のため worktree 分離は不要）:
+以下の2つを Agent ツールで**同一メッセージ内に並列**で起動する:
 
 ### 6a. コードレビュー
 `/codex:review` コマンドを実行し、変更全体のコードレビューを実施。
@@ -140,26 +121,4 @@ Agent ツールで `security-reviewer` エージェントを起動する:
 
 ## Phase 7: 最終レポート
 
-全フェーズの結果を統合して以下のフォーマットで出力する:
-
-```
-ORCHESTRATION REPORT
-Workflow: feature | Task: $ARGUMENTS
-RESEARCH: [Phase 0 要約]
-PLAN REVIEW: [Phase 2 判定 + イテレーション数]
-SPRINT CONTRACT: [Phase 5 QA 判定テーブル]
-CODE REVIEW: [Phase 6a codex:review 要約]
-SECURITY: [Phase 6b security-reviewer 要約]
-FILES CHANGED: [変更ファイル一覧]
-RECOMMENDATION: SHIP / NEEDS WORK / BLOCKED
-```
-
----
-
-## 重要なルール
-
-1. **ゲート厳守**: 各ゲート条件を満たさない限り次のフェーズに進まない
-2. **ループ上限**: Plan REVISE 最大2回、QA FAIL 最大3回。超過したら ESCALATE
-3. **パススルー禁止**: エージェント/codex の生出力をそのまま使わない。検証・統合してからハンドオフ
-4. **コンテキスト節約**: 各ハンドオフ時に前フェーズの出力を要約する（全文持ち回りはしない。ただし Sprint Contract は全文を維持）
-5. **フォールバック**: codex plugin や gemini-cli が利用不可の場合、その旨をユーザーに報告し代替手段を提案する
+`orchestration-patterns` Skill の最終レポート形式に従い、全フェーズの結果を統合して出力する。

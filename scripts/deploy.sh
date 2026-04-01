@@ -2,11 +2,11 @@
 set -euo pipefail
 
 # Claude Code Harness — Deploy Script
-# Copies settings.json, CLAUDE.md, agents/, rules/, hooks/, commands/, memory/ to ~/.claude/
+# Copies settings.json, CLAUDE.md, agents/, rules/, hooks/, commands/, skills/, memory/ to ~/.claude/
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_DIR="$(dirname "$SCRIPT_DIR")"
-CLAUDE_DIR="$HOME/.claude"
+CLAUDE_DIR="${CLAUDE_DIR:-$HOME/.claude}"
 BACKUP_DIR="$CLAUDE_DIR/.backup/$(date +%Y%m%d-%H%M%S)"
 
 DRY_RUN=false
@@ -88,6 +88,17 @@ mkdir -p "$CLAUDE_DIR/commands"
 for f in "$PROJECT_DIR"/commands/*.md; do
   [ -f "$f" ] && deploy_file "$f" "$CLAUDE_DIR/commands/$(basename "$f")"
 done
+
+echo "Skills:"
+if [ -d "$PROJECT_DIR/skills" ]; then
+  while IFS= read -r -d '' f; do
+    rel="${f#"$PROJECT_DIR/skills/"}"
+    mkdir -p "$CLAUDE_DIR/skills/$(dirname "$rel")"
+    deploy_file "$f" "$CLAUDE_DIR/skills/$rel"
+  done < <(find "$PROJECT_DIR/skills" -type f -print0)
+else
+  echo "  [skip] skills/ not found"
+fi
 
 echo "Memory:"
 # Auto Memory deploys to ~/.claude/projects/<project>/memory/

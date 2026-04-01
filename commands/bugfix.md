@@ -1,5 +1,7 @@
 あなたは bugfix ワークフローのオーケストレータです。以下のバグを Phase 0 から Phase 3 まで順番に修正してください。
 
+> Skill ツールで `orchestration-patterns` を参照し、ハンドオフ形式・レポート形式・重要なルールに従うこと。
+
 ## バグ
 
 $ARGUMENTS
@@ -34,6 +36,8 @@ Skill ツールで `superpowers:systematic-debugging` を起動する。
 
 systematic-debugging の手順に従い、根本原因を特定する。
 
+**フォールバック**: superpowers プラグインが利用不可の場合、Claude 自身で体系的デバッグを実施する。
+
 ---
 
 ## Phase 2: 修正実装（generator エージェント）
@@ -61,6 +65,8 @@ Agent ツールで `generator` エージェントを起動する:
 
 ## 最終レポート
 
+`orchestration-patterns` Skill の最終レポート形式を参考に、以下のフォーマットで出力する:
+
 ```
 ORCHESTRATION REPORT
 Workflow: bugfix | Task: $ARGUMENTS
@@ -71,10 +77,3 @@ CODE REVIEW: [Phase 3 codex:review 要約]
 FILES CHANGED: [変更ファイル一覧]
 RECOMMENDATION: SHIP / NEEDS WORK / BLOCKED
 ```
-
-## 重要なルール
-
-1. **ゲート厳守**: Research Report が空なら Phase 1 に進まない
-2. **TDD 必須**: バグ再現テストを先に書いてから修正する
-3. **パススルー禁止**: エージェント/codex の生出力を検証・統合してから報告する
-4. **フォールバック**: superpowers プラグインが利用不可の場合、Claude 自身で体系的デバッグを実施する
