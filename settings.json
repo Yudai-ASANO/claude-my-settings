@@ -25,7 +25,7 @@
       "Bash(tar:*)", "Bash(unzip:*)", "Bash(zip:*)",
       "Bash(python3 --version)", "Bash(node --version)", "Bash(npm --version)",
       "Bash(pnpm --version)", "Bash(git --version)",
-      "Bash(gemini --sandbox *)"
+      "Bash(gemini *)"
     ],
     "ask": [
       "Bash(rm *)",

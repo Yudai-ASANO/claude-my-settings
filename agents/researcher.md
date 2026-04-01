@@ -21,17 +21,17 @@ permissionMode: plan
 
 ### Step 2: gemini-cli による外部調査
 
-各サブ質問を gemini-cli に投入する。全コマンドは `--sandbox` と `--output-format json` を必須とする。
+各サブ質問を gemini-cli に投入する。全コマンドは `--output-format json` を必須とする。
 
 ```bash
 # Web 検索
-gemini --sandbox -p "QUERY: [具体的な質問] OUTPUT: ソース URL 付きで回答" --output-format json 2>/dev/null
+gemini -p "QUERY: [具体的な質問] OUTPUT: ソース URL 付きで回答" --output-format json 2>/dev/null
 
 # 事実確認
-gemini --sandbox -p "VERIFY: [主張] OUTPUT: True/False をソース URL 付きで" --output-format json 2>/dev/null
+gemini -p "VERIFY: [主張] OUTPUT: True/False をソース URL 付きで" --output-format json 2>/dev/null
 
 # ドキュメント参照
-gemini --sandbox -p "LOOKUP: [API/ライブラリの質問] OUTPUT: 公式ドキュメント URL 付きで回答" --output-format json 2>/dev/null
+gemini -p "LOOKUP: [API/ライブラリの質問] OUTPUT: 公式ドキュメント URL 付きで回答" --output-format json 2>/dev/null
 ```
 
 ### Step 3: gemini 結果の検証

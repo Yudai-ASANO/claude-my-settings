@@ -8,7 +8,7 @@
 ```
 ユーザー → Claude Code（司令塔・設計・統合）
   ↓
-  Bash(gemini --sandbox -p "..." --output-format json 2>/dev/null) → Gemini CLI（調査員・Web 検索・事実確認）
+  Bash(gemini -p "..." --output-format json 2>/dev/null) → Gemini CLI（調査員・Web 検索・事実確認）
   ↓
   Claude Code（検証・統合）
 ```
@@ -43,13 +43,13 @@ Gemini CLI に委譲しない:
 
 ### コマンドパターン
 
-全コマンドは `--sandbox` と `--output-format json` を必須とする:
+全コマンドは `--output-format json` を必須とする:
 
 | 目的 | コマンド |
 |------|---------|
-| Web 検索 | `gemini --sandbox -p "QUERY: <具体的な質問> OUTPUT: ソース URL 付きで回答" --output-format json 2>/dev/null` |
-| 事実確認 | `gemini --sandbox -p "VERIFY: <具体的な主張> OUTPUT: True/False をソース URL 付きで" --output-format json 2>/dev/null` |
-| ドキュメント参照 | `gemini --sandbox -p "LOOKUP: <API/ライブラリの具体的な質問> OUTPUT: 公式ドキュメント URL 付きで回答" --output-format json 2>/dev/null` |
+| Web 検索 | `gemini -p "QUERY: <具体的な質問> OUTPUT: ソース URL 付きで回答" --output-format json 2>/dev/null` |
+| 事実確認 | `gemini -p "VERIFY: <具体的な主張> OUTPUT: True/False をソース URL 付きで" --output-format json 2>/dev/null` |
+| ドキュメント参照 | `gemini -p "LOOKUP: <API/ライブラリの具体的な質問> OUTPUT: 公式ドキュメント URL 付きで回答" --output-format json 2>/dev/null` |
 
 ### エラーハンドリング
 
