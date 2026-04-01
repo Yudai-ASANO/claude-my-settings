@@ -3,6 +3,7 @@ name: build-error-resolver
 description: ビルドエラー解決エージェント。ビルド・型チェック・リンターのエラーを自動診断し、修復提案と実装を行う。
 tools: Read, Write, Edit, Bash, Grep, Glob
 model: opus
+effort: low
 ---
 
 # Build Error Resolver — ビルドエラー解決エージェント

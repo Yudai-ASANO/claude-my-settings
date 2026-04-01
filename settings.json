@@ -1,7 +1,8 @@
 {
   "$schema": "https://json.schemastore.org/claude-code-settings.json",
   "env": {
-    "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1"
+    "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1",
+    "CLAUDE_AUTOCOMPACT_PCT_OVERRIDE": "80"
   },
   "attribution": { "commit": "", "pr": "" },
   "permissions": {
@@ -9,8 +10,11 @@
       "Read", "Write", "Edit", "MultiEdit", "Glob", "Grep", "LS",
       "WebFetch", "WebSearch", "TodoRead", "TodoWrite",
       "Bash(git *)", "Bash(gh *)",
-      "Bash(npm:*)", "Bash(pnpm:*)", "Bash(yarn:*)", "Bash(bun:*)", "Bash(npx:*)",
-      "Bash(pip:*)", "Bash(pip3:*)",
+      "Bash(npm list *)", "Bash(npm info *)", "Bash(npm view *)", "Bash(npm outdated *)", "Bash(npm ls *)", "Bash(npm audit *)",
+      "Bash(pnpm list *)",
+      "Bash(yarn list *)",
+      "Bash(pip list *)", "Bash(pip show *)", "Bash(pip check *)",
+      "Bash(pip3 list *)", "Bash(pip3 show *)", "Bash(pip3 check *)",
       "Bash(make:*)", "Bash(tsc:*)", "Bash(eslint:*)", "Bash(prettier:*)",
       "Bash(vitest:*)", "Bash(jest:*)", "Bash(pytest:*)", "Bash(playwright:*)",
       "Bash(cargo:*)", "Bash(rustc:*)", "Bash(docker:*)", "Bash(docker-compose:*)",
@@ -21,7 +25,36 @@
       "Bash(tar:*)", "Bash(unzip:*)", "Bash(zip:*)",
       "Bash(python3 --version)", "Bash(node --version)", "Bash(npm --version)",
       "Bash(pnpm --version)", "Bash(git --version)",
-      "Bash(gemini *)"
+      "Bash(gemini --sandbox *)"
+    ],
+    "ask": [
+      "Bash(rm *)",
+      "Bash(kill *)",
+      "Bash(killall *)",
+      "Bash(npm install *)",
+      "Bash(npm uninstall *)",
+      "Bash(pip install *)",
+      "Bash(pip uninstall *)",
+      "Bash(pip3 install *)",
+      "Bash(pip3 uninstall *)",
+      "Bash(pnpm install *)",
+      "Bash(pnpm add *)",
+      "Bash(yarn add *)",
+      "Bash(yarn remove *)",
+      "Bash(bun install *)",
+      "Bash(bun add *)",
+      "Bash(brew install *)",
+      "Bash(brew uninstall *)",
+      "Bash(npx *)",
+      "Bash(npm run *)",
+      "Bash(npm test *)",
+      "Bash(npm version *)",
+      "Bash(pnpm run *)",
+      "Bash(pnpm test *)",
+      "Bash(yarn run *)",
+      "Bash(yarn test *)",
+      "Bash(bun run *)",
+      "Bash(bun test *)"
     ],
     "deny": [
       "Bash(rm -rf *)", "Bash(rm -fr *)",
@@ -84,6 +117,12 @@
         "matcher": "tool == \"Write\" && tool_input.file_path matches \"(CLAUDE|AGENTS)\\\\.md$\"",
         "hooks": [{ "type": "command", "command": "$HOME/.claude/hooks/check-doc-size.sh" }]
       }
+    ],
+    "SessionStart": [
+      {
+        "matcher": "",
+        "hooks": [{ "type": "command", "command": "$HOME/.claude/hooks/session-start.sh" }]
+      }
     ]
   },
   "statusLine": {
@@ -116,5 +155,6 @@
   },
   "language": "ja",
   "autoCompact": true,
-  "disableBypassPermissionsMode": "disable"
+  "disableBypassPermissionsMode": "disable",
+  "alwaysThinkingEnabled": true
 }
