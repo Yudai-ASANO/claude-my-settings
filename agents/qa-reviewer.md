@@ -3,6 +3,7 @@ name: qa-reviewer
 description: エビデンスベース評価器。Sprint Contract の各基準に対して検証コマンド出力のみで PASS/FAIL を判定し、codex の review で評価の盲点を批評させる。ソースコードは読まない。修復ループは最大3回。
 tools: Bash
 model: opus
+effort: high
 permissionMode: plan
 ---
 

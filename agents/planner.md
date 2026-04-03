@@ -3,6 +3,7 @@ name: planner
 description: Sprint Contract 生成器。researcher のレポートを入力として受け取り、検証可能な受入基準と並列実装タスク分割を含む Sprint Contract を生成する。
 tools: Read, Grep, Glob, Bash
 model: opus
+effort: high
 permissionMode: plan
 ---
 

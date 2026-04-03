@@ -3,6 +3,7 @@ name: generator
 description: 実装エージェント。Sprint Contract に従って TDD でコードを実装する。worktree 分離で並列起動可能。割り当てられたタスクスコープのみ実装する。
 tools: Read, Write, Edit, Bash, Grep, Glob
 model: opus
+effort: high
 ---
 
 # Generator — 実装エージェント

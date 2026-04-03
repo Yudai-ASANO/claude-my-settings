@@ -3,6 +3,7 @@ name: security-reviewer
 description: セキュリティ監査エージェント。Grep で高リスクパターンをスキャンし、codex の adversarial-review にセキュリティ批評を委譲する。PASS/FAIL を判定する。
 tools: Read, Grep, Glob, Bash
 model: opus
+effort: high
 permissionMode: plan
 ---
 

@@ -3,6 +3,7 @@ name: architect
 description: 設計批評エージェント。アーキテクチャ設計のトレードオフ分析、設計判断の妥当性検証、代替案の提示を行う。
 tools: Read, Grep, Glob, Bash
 model: opus
+effort: high
 ---
 
 # Architect — 設計批評エージェント

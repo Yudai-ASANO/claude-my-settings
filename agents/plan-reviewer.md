@@ -2,7 +2,8 @@
 name: plan-reviewer
 description: Sprint Contract 検証エージェント。planner の出力を検証し、codex の adversarial-review に批評を委譲する。APPROVE / REVISE を判定する。
 tools: Read, Grep, Glob, Bash
-model: sonnet
+model: opus
+effort: high
 permissionMode: plan
 ---
 
