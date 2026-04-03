@@ -15,7 +15,7 @@ Agent ツールで `researcher` エージェントを起動する。以下のプ
 ### タスク: $ARGUMENTS
 ### 指示:
 1. タスクに関連するサブ質問を最大5つに分解する
-2. gemini-cli で外部情報を調査する（--sandbox --output-format json 必須）
+2. WebSearch/WebFetch で外部情報を調査する
 3. Grep/Glob でローカルコードベースを分析する
 4. Research Report フォーマットで出力する
 ```
@@ -24,7 +24,7 @@ Agent ツールで `researcher` エージェントを起動する。以下のプ
 
 researcher の出力を受け取り、以下を確認:
 - 調査結果が1項目以上あるか（品質ゲート）
-- gemini 出力にソース URL が付いているか
+- 外部調査結果にソース URL が付いているか
 - コードベース分析に具体的なファイルパスがあるか
 
 ### Step 3: 結果の報告
@@ -36,5 +36,5 @@ Research Report をユーザーに提示する。以下も併せて報告:
 ## 注意事項
 
 - researcher の生出力をそのまま見せない。検証・統合してから報告する
-- gemini が失敗した場合はその旨を明示する（トレーニングデータからの推測はしない）
+- WebSearch/WebFetch が失敗した場合はその旨を明示する（トレーニングデータからの推測はしない）
 - このコマンドは Phase 0 の単独実行。後続の `/plan` で使う Research Report を生成する目的

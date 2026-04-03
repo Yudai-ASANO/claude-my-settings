@@ -15,7 +15,7 @@ Agent ツールで `researcher` エージェントを起動する:
 ```
 ## HANDOFF: orchestrator → researcher
 ### タスク: $ARGUMENTS
-### 指示: サブ質問を最大5つに分解し、gemini-cli で外部調査 + Grep/Glob でコードベース分析を行い、Research Report を出力してください。
+### 指示: サブ質問を最大5つに分解し、WebSearch/WebFetch で外部調査 + Grep/Glob でコードベース分析を行い、Research Report を出力してください。
 ```
 
 **ゲート**: Research Report に調査結果が1項目以上あること。なければ停止してユーザーに報告。

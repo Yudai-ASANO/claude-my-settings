@@ -4,7 +4,7 @@
 
 | エージェント | モデル | 役割 | 起動条件 |
 |------------|--------|------|---------|
-| researcher | sonnet | 外部調査 + コードベース分析。gemini-cli 委譲で Web 検索 | Phase 0 で自動起動 |
+| researcher | sonnet | 外部調査 + コードベース分析。WebSearch/WebFetch で Web 検索 | Phase 0 で自動起動 |
 | planner | opus | Research Report から Sprint Contract を生成 | Phase 1 で自動起動 |
 | plan-reviewer | sonnet | Sprint Contract の検証。APPROVE/REVISE を判定 | Phase 2 で自動起動 |
 | generator | sonnet | Sprint Contract に従い TDD でコードを実装。worktree 分離で並列起動可能 | Phase 3 で自動起動 |
