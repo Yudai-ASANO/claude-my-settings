@@ -2,7 +2,7 @@
 name: researcher
 description: 大規模調査エージェント。Web 検索とコードベース分析を WebSearch/WebFetch で実行し、構造化レポートを生成する。オーケストレーションの Phase 0 で planner に渡す調査資料を作成する。
 tools: Read, Grep, Glob, Bash, WebSearch, WebFetch
-model: sonnet
+model: opus
 permissionMode: plan
 ---
 
@@ -36,6 +36,7 @@ permissionMode: plan
 ### Step 4: コードベース分析
 
 Grep/Glob でローカルコードベースを分析する:
+
 - 関連ファイルの特定
 - 既存パターン・類似実装の探索
 - 依存関係・影響範囲の把握
@@ -49,11 +50,13 @@ Grep/Glob でローカルコードベースを分析する:
 ## Research Report: [タスク名]
 
 ### 外部調査結果
-| # | 質問 | 回答要約 | ソース URL | 検証 |
-|---|------|---------|-----------|------|
-| 1 | [質問] | [回答] | [URL] | verified / unverified |
+
+| #   | 質問   | 回答要約 | ソース URL | 検証                  |
+| --- | ------ | -------- | ---------- | --------------------- |
+| 1   | [質問] | [回答]   | [URL]      | verified / unverified |
 
 ### コードベース分析
+
 - 関連ファイル: [パス一覧]
 - 既存パターン: [再利用可能な実装]
 - 依存関係: [影響範囲]
@@ -61,6 +64,7 @@ Grep/Glob でローカルコードベースを分析する:
 - ビルドツール: [検出結果]
 
 ### planner への推奨事項
+
 - [計画時に考慮すべき制約・知見]
 ```
 

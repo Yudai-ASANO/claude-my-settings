@@ -8,19 +8,19 @@ type: reference
 
 ## Command → Agent → Skills 3層アーキテクチャ
 
-```
+```markdown
 Commands (エントリポイント)
-  → Agents (ワークフローオーケストレーション)
-    → Skills (ドメイン知識の Progressive Disclosure)
+→ Agents (ワークフローオーケストレーション)
+→ Skills (ドメイン知識の Progressive Disclosure)
 ```
 
 ### 各層の責務
 
-| 層 | 責務 | ファイル位置 | ロードタイミング |
-|---|------|-------------|----------------|
-| Commands | ユーザー操作のエントリポイント | `.claude/commands/*.md` | `/command` 実行時 |
-| Agents | マルチステップワークフロー制御 | `.claude/agents/*.md` (または agents/*.md) | Agent ツールで起動時 |
-| Skills | ドメイン固有知識の注入 | `.claude/skills/*/SKILL.md` | 呼び出し時 or 自動判定 |
+| 層       | 責務                           | ファイル位置                                | ロードタイミング       |
+| -------- | ------------------------------ | ------------------------------------------- | ---------------------- |
+| Commands | ユーザー操作のエントリポイント | `.claude/commands/*.md`                     | `/command` 実行時      |
+| Agents   | マルチステップワークフロー制御 | `.claude/agents/*.md` (または agents/\*.md) | Agent ツールで起動時   |
+| Skills   | ドメイン固有知識の注入         | `.claude/skills/*/SKILL.md`                 | 呼び出し時 or 自動判定 |
 
 ### Progressive Disclosure
 
@@ -51,15 +51,15 @@ Research → Plan → Implement の3フェーズ構造:
 
 ## コンテキストウィンドウ構造
 
-```
+```markdown
 [System Prompt]
-  ↓
+↓
 [CLAUDE.md files (ancestor → project → user)]
-  ↓
+↓
 [Auto Memory (MEMORY.md 先頭200行)]
-  ↓
+↓
 [Rules (.claude/rules/*.md)]
-  ↓
+↓
 [Conversation]
 ```
 

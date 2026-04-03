@@ -1,4 +1,4 @@
-あなたは bugfix ワークフローのオーケストレータです。以下のバグを Phase 0 から Phase 3 まで順番に修正してください。
+# あなたは bugfix ワークフローのオーケストレータです。以下のバグを Phase 0 から Phase 3 まで順番に修正してください。
 
 > Skill ツールで `orchestration-patterns` を参照し、ハンドオフ形式・レポート形式・重要なルールに従うこと。
 
@@ -12,10 +12,13 @@ $ARGUMENTS
 
 Agent ツールで `researcher` エージェントを起動する:
 
-```
+```markdown
 ## HANDOFF: orchestrator → researcher
+
 ### タスク: バグ調査 — $ARGUMENTS
+
 ### 指示: 以下の観点で調査してください:
+
 1. バグの再現条件と関連コード
 2. 類似バグの事例（WebSearch/WebFetch で外部検索）
 3. エラーログ・スタックトレースの分析
@@ -31,6 +34,7 @@ Agent ツールで `researcher` エージェントを起動する:
 Skill ツールで `superpowers:systematic-debugging` を起動する。
 
 入力として以下を渡す:
+
 - バグの説明: $ARGUMENTS
 - Research Report: [Phase 0 の出力要約]
 
@@ -44,11 +48,15 @@ systematic-debugging の手順に従い、根本原因を特定する。
 
 Agent ツールで `generator` エージェントを起動する:
 
-```
+```markdown
 ## HANDOFF: orchestrator → generator
+
 ### タスク: バグ修正 — $ARGUMENTS
+
 ### デバッグ分析: [Phase 1 の根本原因と修正方向]
+
 ### 指示:
+
 1. まずバグを再現するテストを書く（RED）
 2. テストを通す最小限の修正を実装する（GREEN）
 3. コード品質を改善する（REFACTOR）
@@ -67,7 +75,7 @@ Agent ツールで `generator` エージェントを起動する:
 
 `orchestration-patterns` Skill の最終レポート形式を参考に、以下のフォーマットで出力する:
 
-```
+```markdown
 ORCHESTRATION REPORT
 Workflow: bugfix | Task: $ARGUMENTS
 RESEARCH: [Phase 0 要約]

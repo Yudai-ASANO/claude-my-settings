@@ -57,6 +57,7 @@ Phase 3: /codex:review
 ## エビデンス収集プロトコル
 
 オーケストレータ（Claude メインスレッド）が Sprint Contract の各検証コマンドを実行し、以下を記録:
+
 - exit code
 - stdout（末尾30行）
 - stderr（非空の場合、末尾10行）
@@ -67,11 +68,17 @@ Phase 3: /codex:review
 
 ```markdown
 ## HANDOFF: [source] → [target]
+
 ### タスク: [説明]
+
 ### Research Report: [researcher 出力]
+
 ### Sprint Contract: [全文]
+
 ### 前フェーズ結果: [要約]
+
 ### エビデンス: [検証出力]
+
 ### イテレーション: N/max
 ```
 
