@@ -41,7 +41,8 @@ my-settings/
 │   ├── config-protection.sh
 │   ├── desktop-notify.sh
 │   ├── check-doc-size.sh
-│   └── statusline.py
+│   ├── statusline.py
+│   └── session-start.sh
 ├── rules/                 # コーディング規約・ワークフロールール
 │   ├── global.md
 │   ├── orchestrate.md
@@ -49,7 +50,8 @@ my-settings/
 │   ├── anti-patterns.md
 │   ├── testing.md
 │   ├── security.md
-│   └── performance.md
+│   ├── performance.md
+│   └── codex-delegation.md
 └── scripts/
     └── deploy.sh          # デプロイスクリプト
 ```
@@ -294,10 +296,10 @@ Phase 3: codex:review ────────────→ コードレビュ
 |------------|------|--------|----------------|
 | researcher | 外部調査（WebSearch/WebFetch）+ コードベース分析で Research Report を生成 | sonnet | plan |
 | planner | Research Report を入力として Sprint Contract（受入基準 + タスク分割）を生成 | opus | plan |
-| plan-reviewer | Sprint Contract の妥当性を検証し APPROVE / REVISE を判定 | sonnet | plan |
-| generator | Sprint Contract に従って TDD でコードを実装する | sonnet | （制限なし） |
-| qa-reviewer | エビデンス（検証コマンド出力）のみで PASS / FAIL を判定 | sonnet | plan |
-| security-reviewer | 変更コードの高リスクパターンをスキャンし PASS / FAIL を判定 | sonnet | plan |
+| plan-reviewer | Sprint Contract の妥当性を検証し APPROVE / REVISE を判定 | opus | plan |
+| generator | Sprint Contract に従って TDD でコードを実装する | opus | （制限なし） |
+| qa-reviewer | エビデンス（検証コマンド出力）のみで PASS / FAIL を判定 | opus | plan |
+| security-reviewer | 変更コードの高リスクパターンをスキャンし PASS / FAIL を判定 | opus | plan |
 
 ### 専門エージェント
 
@@ -305,7 +307,7 @@ Phase 3: codex:review ────────────→ コードレビュ
 |------------|------|--------|---------|
 | architect | 設計批評・トレードオフ分析・アーキテクチャレビュー | opus | 手動呼び出し（設計判断の検証時） |
 | tdd-guide | TDD サイクル強制・テスト品質レビュー・テスト戦略策定 | opus | `/tdd` コマンドで起動 |
-| build-error-resolver | ビルドエラー自動診断・修復提案（型/リンター/ビルドエラー対応） | sonnet | 手動呼び出し（ビルドエラー発生時） |
+| build-error-resolver | ビルドエラー自動診断・修復提案（型/リンター/ビルドエラー対応） | opus | 手動呼び出し（ビルドエラー発生時） |
 
 `permissionMode: plan` のエージェントはファイルの書き込み・編集が禁止されています。
 generator のみが実際のコード変更を担当します。

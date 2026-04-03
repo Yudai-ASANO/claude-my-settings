@@ -12,6 +12,7 @@
 - セキュリティ → `rules/security.md`
 - 禁止パターン → `rules/anti-patterns.md`
 - パフォーマンス → `rules/performance.md`
+- Codex Plugin 委譲 → `rules/codex-delegation.md`
 
 ## Git
 
