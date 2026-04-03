@@ -1,9 +1,11 @@
 #!/usr/bin/env python3
 """Claude Code statusLine hook - multi-line hierarchical display.
 
-Line 1: Model | Context bar + % | Token usage (used/max)
-Line 2: Branch | Directory | Rate limits | Cost
+Line 1: Model | Context bar + % | Token usage (used only)
+Line 2: Branch | Directory (max 20ch) | Rate limits | Cost
 Line 3: Agent / Worktree info (conditional)
+
+Colors: threshold-based fixed ANSI (green <50%, yellow 50-79%, red >=80%).
 """
 import json
 import os
@@ -24,15 +26,15 @@ GIT_CACHE = '/tmp/claude-statusline-git-branch'
 GIT_CACHE_TTL = 5
 
 
-def gradient(pct):
+def threshold_color(pct):
     if pct < 50:
-        r = int(pct * 5.1)
-        return f'\033[38;2;{r};200;80m'
-    g = int(200 - (pct - 50) * 4)
-    return f'\033[38;2;255;{max(g, 0)};60m'
+        return '\033[32m'   # green
+    if pct < 80:
+        return '\033[33m'   # yellow
+    return '\033[31m'       # red
 
 
-def braille_bar(pct, width=8):
+def braille_bar(pct, width=6):
     pct = min(max(pct, 0), 100)
     level = pct / 100
     bar = ''
@@ -49,16 +51,18 @@ def braille_bar(pct, width=8):
     return bar
 
 
-def fmt(label, pct, width=8):
+def fmt(label, pct, width=6):
     p = round(pct)
-    return f'{DIM}{label}{R} {gradient(pct)}{braille_bar(pct, width)}{R} {p}%'
+    return f'{DIM}{label}{R} {threshold_color(pct)}{braille_bar(pct, width)}{R} {p}%'
 
 
 def format_tokens(n):
     if n >= 1_000_000:
-        return f'{n / 1_000_000:.1f}M'
+        v = n / 1_000_000
+        return f'{v:.0f}M' if n % 1_000_000 == 0 else f'{v:.1f}M'
     if n >= 1_000:
-        return f'{n / 1_000:.1f}K'
+        v = n / 1_000
+        return f'{v:.0f}K' if n % 1_000 == 0 else f'{v:.1f}K'
     return str(n)
 
 
@@ -88,16 +92,17 @@ def get_git_branch(cwd):
     return branch
 
 
-def shorten_path(path, max_len=30):
+def shorten_path(path, max_len=20):
     home = os.path.expanduser('~')
     if path.startswith(home):
         path = '~' + path[len(home):]
     if len(path) <= max_len:
         return path
-    parts = path.split('/')
-    if len(parts) <= 2:
+    parts = [p for p in path.split('/') if p]
+    if len(parts) <= 1:
         return path
-    return parts[0] + '/\u2026/' + parts[-1]
+    prefix = '~/' if path.startswith('~') else '/'
+    return prefix + '\u2026/' + parts[-1]
 
 
 # --- Line 1: Model | Context | Tokens ---
@@ -111,11 +116,8 @@ if ctx_pct is not None:
     total_in = ctx_win.get('total_input_tokens', 0)
     total_out = ctx_win.get('total_output_tokens', 0)
     used_tokens = total_in + total_out
-    max_tokens = ctx_win.get('context_window_size', 0)
-    if max_tokens > 0:
-        line1.append(
-            f'{DIM}{format_tokens(used_tokens)}/{format_tokens(max_tokens)}{R}'
-        )
+    if used_tokens > 0:
+        line1.append(f'{DIM}{format_tokens(used_tokens)}{R}')
 
 # --- Line 2: Branch | Dir | Rate limits | Cost ---
 line2 = []
