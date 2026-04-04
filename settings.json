@@ -6,6 +6,7 @@
   },
   "attribution": { "commit": "", "pr": "" },
   "permissions": {
+    "defaultMode": "auto",
     "allow": [
       "Read", "Write", "Edit", "MultiEdit", "Glob", "Grep", "LS",
       "WebFetch", "WebSearch", "TodoRead", "TodoWrite",
