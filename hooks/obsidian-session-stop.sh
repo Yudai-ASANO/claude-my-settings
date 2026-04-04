@@ -40,8 +40,15 @@ if ! mkdir -p "$session_dir" 2>/dev/null || ! mkdir -p "$VAULT/AI/Daily" 2>/dev/
 fi
 
 # Find per-session state file (scoped by CLAUDE_SESSION_ID)
-session_id="${CLAUDE_SESSION_ID:-$$}"
+# Must match the same ID resolution logic as obsidian-session-track.sh
 state_dir="$HOME/.claude/state/obsidian"
+if [[ -n "${CLAUDE_SESSION_ID:-}" ]]; then
+  session_id="$CLAUDE_SESSION_ID"
+elif [[ -f "$state_dir/.current-session-id" ]]; then
+  session_id=$(cat "$state_dir/.current-session-id")
+else
+  session_id="fallback-unknown"
+fi
 state_file="$state_dir/session-${session_id}.jsonl"
 
 edited_files=""
@@ -138,6 +145,7 @@ fi
 
 # Only delete state file after both session note and daily note succeeded
 rm -f "$state_file" 2>/dev/null || true
+rm -f "$state_dir/.current-session-id" 2>/dev/null || true
 
 # Clean up stale state files older than 1 day (orphaned sessions)
 find "$state_dir" -name 'session-*.jsonl' -mtime +1 -delete 2>/dev/null || true

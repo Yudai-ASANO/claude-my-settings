@@ -11,8 +11,18 @@ VAULT="$HOME/Developer/obsidian"
 input=$(cat)
 
 # Use session ID for per-session state isolation
-session_id="${CLAUDE_SESSION_ID:-$$}"
+# CLAUDE_SESSION_ID is stable across all hooks in a session.
+# Fallback: use a persistent file created at session start to avoid $$ mismatch.
 state_dir="$HOME/.claude/state/obsidian"
+if [[ -n "${CLAUDE_SESSION_ID:-}" ]]; then
+  session_id="$CLAUDE_SESSION_ID"
+elif [[ -f "$state_dir/.current-session-id" ]]; then
+  session_id=$(cat "$state_dir/.current-session-id")
+else
+  session_id="fallback-$(date +%Y%m%d-%H%M%S)"
+  mkdir -p "$state_dir" 2>/dev/null || true
+  printf '%s' "$session_id" > "$state_dir/.current-session-id" 2>/dev/null || true
+fi
 state_file="$state_dir/session-${session_id}.jsonl"
 
 # Fail explicitly if state dir cannot be created (prevents silent tracking loss)

@@ -4,6 +4,9 @@
 
 set -uo pipefail
 
+# Restrictive umask: new files created as 600, dirs as 700
+umask 077
+
 # Read hook input from stdin (required by Claude Code hook protocol)
 input=$(cat)
 
