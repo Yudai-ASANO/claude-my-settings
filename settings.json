@@ -8,27 +8,73 @@
   },
   "attribution": { "commit": "", "pr": "" },
   "permissions": {
-    "defaultMode": "auto",
+    "defaultMode": "default",
     "allow": [
-      "Read", "Write", "Edit", "MultiEdit", "Glob", "Grep", "LS",
-      "WebFetch", "WebSearch", "TodoRead", "TodoWrite",
-      "Bash(git *)", "Bash(gh *)",
-      "Bash(npm list *)", "Bash(npm info *)", "Bash(npm view *)", "Bash(npm outdated *)", "Bash(npm ls *)", "Bash(npm audit *)",
+      "Read",
+      "Write",
+      "Edit",
+      "MultiEdit",
+      "Glob",
+      "Grep",
+      "LS",
+      "WebFetch",
+      "WebSearch",
+      "TodoRead",
+      "TodoWrite",
+      "Bash(git *)",
+      "Bash(gh *)",
+      "Bash(npm list *)",
+      "Bash(npm info *)",
+      "Bash(npm view *)",
+      "Bash(npm outdated *)",
+      "Bash(npm ls *)",
+      "Bash(npm audit *)",
       "Bash(pnpm list *)",
       "Bash(yarn list *)",
-      "Bash(pip list *)", "Bash(pip show *)", "Bash(pip check *)",
-      "Bash(pip3 list *)", "Bash(pip3 show *)", "Bash(pip3 check *)",
-      "Bash(make:*)", "Bash(tsc:*)", "Bash(eslint:*)", "Bash(prettier:*)",
-      "Bash(vitest:*)", "Bash(jest:*)", "Bash(pytest:*)", "Bash(playwright:*)",
-      "Bash(cargo:*)", "Bash(rustc:*)", "Bash(docker:*)", "Bash(docker-compose:*)",
-      "Bash(wc *)", "Bash(which *)", "Bash(type *)", "Bash(ls *)",
-      "Bash(sort *)", "Bash(uniq *)", "Bash(diff *)",
-      "Bash(mkdir *)", "Bash(cp *)", "Bash(mv *)", "Bash(touch *)", "Bash(chmod *)",
-      "Bash(pwd)", "Bash(jq *)", "Bash(cut *)", "Bash(tr *)",
-      "Bash(tar:*)", "Bash(unzip:*)", "Bash(zip:*)",
-      "Bash(python3 --version)", "Bash(node --version)", "Bash(npm --version)",
-      "Bash(pnpm --version)", "Bash(git --version)",
-      "Bash(obsidian *)", "Bash(defuddle *)"
+      "Bash(pip list *)",
+      "Bash(pip show *)",
+      "Bash(pip check *)",
+      "Bash(pip3 list *)",
+      "Bash(pip3 show *)",
+      "Bash(pip3 check *)",
+      "Bash(make:*)",
+      "Bash(tsc:*)",
+      "Bash(eslint:*)",
+      "Bash(prettier:*)",
+      "Bash(vitest:*)",
+      "Bash(jest:*)",
+      "Bash(pytest:*)",
+      "Bash(playwright:*)",
+      "Bash(cargo:*)",
+      "Bash(rustc:*)",
+      "Bash(docker:*)",
+      "Bash(docker-compose:*)",
+      "Bash(wc *)",
+      "Bash(which *)",
+      "Bash(type *)",
+      "Bash(ls *)",
+      "Bash(sort *)",
+      "Bash(uniq *)",
+      "Bash(diff *)",
+      "Bash(mkdir *)",
+      "Bash(cp *)",
+      "Bash(mv *)",
+      "Bash(touch *)",
+      "Bash(chmod *)",
+      "Bash(pwd)",
+      "Bash(jq *)",
+      "Bash(cut *)",
+      "Bash(tr *)",
+      "Bash(tar:*)",
+      "Bash(unzip:*)",
+      "Bash(zip:*)",
+      "Bash(python3 --version)",
+      "Bash(node --version)",
+      "Bash(npm --version)",
+      "Bash(pnpm --version)",
+      "Bash(git --version)",
+      "Bash(obsidian *)",
+      "Bash(defuddle *)"
     ],
     "ask": [
       "Bash(rm *)",
@@ -60,27 +106,57 @@
       "Bash(bun test *)"
     ],
     "deny": [
-      "Bash(rm -rf *)", "Bash(rm -fr *)",
-      "Bash(sudo *)", "Bash(su *)",
-      "Bash(curl *)", "Bash(wget *)",
-      "Bash(nc *)", "Bash(ncat *)", "Bash(telnet *)", "Bash(ssh *)", "Bash(scp *)",
-      "Bash(osascript *)", "Bash(security *)",
-      "Bash(pbcopy *)", "Bash(pbpaste *)", "Bash(open *)",
-      "Bash(git push --force *)", "Bash(git push -f *)",
-      "Bash(git reset --hard *)", "Bash(git clean -f*)",
-      "Bash(* .env*)", "Bash(* ~/.ssh/*)", "Bash(* ~/.aws/*)",
-      "Bash(* ~/.config/gh/*)", "Bash(* ~/.git-credentials)",
-      "Bash(* ~/.netrc)", "Bash(* ~/.npmrc)",
-      "Bash(* ~/.zshrc*)", "Bash(* ~/.bashrc*)",
-      "Read(**/.env)", "Read(**/.env.*)", "Read(**/secrets/**)",
-      "Read(**/*secret*)", "Read(**/*credential*)",
-      "Read(~/.ssh/**)", "Read(~/.aws/**)", "Read(~/.git-credentials)",
-      "Read(~/.config/gh/**)", "Read(~/.netrc)", "Read(~/.npmrc)",
-      "Edit(**/.env)", "Edit(**/.env.*)",
-      "Write(**/.env)", "Write(**/.env.*)",
-      "Read(/secrets/**)", "Edit(/secrets/**)", "Write(/secrets/**)",
-      "Edit(~/.zshrc)", "Write(~/.zshrc)",
-      "Edit(~/.bashrc)", "Write(~/.bashrc)"
+      "Bash(rm -rf *)",
+      "Bash(rm -fr *)",
+      "Bash(sudo *)",
+      "Bash(su *)",
+      "Bash(curl *)",
+      "Bash(wget *)",
+      "Bash(nc *)",
+      "Bash(ncat *)",
+      "Bash(telnet *)",
+      "Bash(ssh *)",
+      "Bash(scp *)",
+      "Bash(osascript *)",
+      "Bash(security *)",
+      "Bash(pbcopy *)",
+      "Bash(pbpaste *)",
+      "Bash(open *)",
+      "Bash(git push --force *)",
+      "Bash(git push -f *)",
+      "Bash(git reset --hard *)",
+      "Bash(git clean -f*)",
+      "Bash(* .env*)",
+      "Bash(* ~/.ssh/*)",
+      "Bash(* ~/.aws/*)",
+      "Bash(* ~/.config/gh/*)",
+      "Bash(* ~/.git-credentials)",
+      "Bash(* ~/.netrc)",
+      "Bash(* ~/.npmrc)",
+      "Bash(* ~/.zshrc*)",
+      "Bash(* ~/.bashrc*)",
+      "Read(**/.env)",
+      "Read(**/.env.*)",
+      "Read(**/secrets/**)",
+      "Read(**/*secret*)",
+      "Read(**/*credential*)",
+      "Read(~/.ssh/**)",
+      "Read(~/.aws/**)",
+      "Read(~/.git-credentials)",
+      "Read(~/.config/gh/**)",
+      "Read(~/.netrc)",
+      "Read(~/.npmrc)",
+      "Edit(**/.env)",
+      "Edit(**/.env.*)",
+      "Write(**/.env)",
+      "Write(**/.env.*)",
+      "Read(/secrets/**)",
+      "Edit(/secrets/**)",
+      "Write(/secrets/**)",
+      "Edit(~/.zshrc)",
+      "Write(~/.zshrc)",
+      "Edit(~/.bashrc)",
+      "Write(~/.bashrc)"
     ]
   },
   "enableAllProjectMcpServers": false,
@@ -88,59 +164,120 @@
     "PreToolUse": [
       {
         "matcher": "tool == \"Edit\" || tool == \"Write\"",
-        "hooks": [{ "type": "command", "command": "$HOME/.claude/hooks/suggest-compact.sh" }]
+        "hooks": [
+          {
+            "type": "command",
+            "command": "$HOME/.claude/hooks/suggest-compact.sh"
+          }
+        ]
       },
       {
         "matcher": "tool == \"Bash\" && tool_input.command matches \"git commit\"",
-        "hooks": [{ "type": "command", "command": "$HOME/.claude/hooks/pre-commit-gate.sh" }]
+        "hooks": [
+          {
+            "type": "command",
+            "command": "$HOME/.claude/hooks/pre-commit-gate.sh"
+          }
+        ]
       },
       {
         "matcher": "tool == \"Bash\" && tool_input.command matches \"git push\"",
-        "hooks": [{ "type": "command", "command": "$HOME/.claude/hooks/git-push-safety.sh" }]
+        "hooks": [
+          {
+            "type": "command",
+            "command": "$HOME/.claude/hooks/git-push-safety.sh"
+          }
+        ]
       },
       {
         "matcher": "(tool == \"Edit\" || tool == \"Write\") && tool_input.file_path matches \"(\\\\.eslintrc|\\\\.prettierrc|prettier\\\\.config|eslint\\\\.config|\\\\.stylelintrc|biome\\\\.json)\"",
-        "hooks": [{ "type": "command", "command": "$HOME/.claude/hooks/config-protection.sh" }]
+        "hooks": [
+          {
+            "type": "command",
+            "command": "$HOME/.claude/hooks/config-protection.sh"
+          }
+        ]
       }
     ],
     "PreCompact": [
       {
         "matcher": "",
-        "hooks": [{ "type": "command", "command": "cd \"$CLAUDE_PROJECT_DIR\" 2>/dev/null && git add -A && git diff --cached --quiet || git commit -m 'checkpoint: pre-compact'" }]
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cd \"$CLAUDE_PROJECT_DIR\" 2>/dev/null && git add -A && git diff --cached --quiet || git commit -m 'checkpoint: pre-compact'"
+          }
+        ]
       }
     ],
     "Stop": [
       {
         "matcher": "*",
-        "hooks": [{ "type": "command", "command": "$HOME/.claude/hooks/desktop-notify.sh", "async": true }]
+        "hooks": [
+          {
+            "type": "command",
+            "command": "$HOME/.claude/hooks/desktop-notify.sh",
+            "async": true
+          }
+        ]
       },
       {
         "matcher": "*",
-        "hooks": [{ "type": "command", "command": "$HOME/.claude/hooks/obsidian-session-stop.sh", "async": true }]
+        "hooks": [
+          {
+            "type": "command",
+            "command": "$HOME/.claude/hooks/obsidian-session-stop.sh",
+            "async": true
+          }
+        ]
       }
     ],
     "PostToolUse": [
       {
         "matcher": "tool == \"Write\" || tool == \"Edit\" || tool == \"MultiEdit\"",
-        "hooks": [{ "type": "command", "command": "$HOME/.claude/hooks/auto-format.sh" }]
+        "hooks": [
+          { "type": "command", "command": "$HOME/.claude/hooks/auto-format.sh" }
+        ]
       },
       {
         "matcher": "tool == \"Write\" && tool_input.file_path matches \"(CLAUDE|AGENTS)\\\\.md$\"",
-        "hooks": [{ "type": "command", "command": "$HOME/.claude/hooks/check-doc-size.sh" }]
+        "hooks": [
+          {
+            "type": "command",
+            "command": "$HOME/.claude/hooks/check-doc-size.sh"
+          }
+        ]
       },
       {
         "matcher": "tool == \"Bash\"",
-        "hooks": [{ "type": "command", "command": "$HOME/.claude/hooks/bash-audit-log.sh", "async": true }]
+        "hooks": [
+          {
+            "type": "command",
+            "command": "$HOME/.claude/hooks/bash-audit-log.sh",
+            "async": true
+          }
+        ]
       },
       {
         "matcher": "tool == \"Write\" || tool == \"Edit\" || tool == \"MultiEdit\"",
-        "hooks": [{ "type": "command", "command": "$HOME/.claude/hooks/obsidian-session-track.sh", "async": true }]
+        "hooks": [
+          {
+            "type": "command",
+            "command": "$HOME/.claude/hooks/obsidian-session-track.sh",
+            "async": true
+          }
+        ]
       }
     ],
     "SessionStart": [
       {
         "matcher": "",
-        "hooks": [{ "type": "command", "command": "$HOME/.claude/hooks/session-start.sh" }]
+        "hooks": [
+          {
+            "type": "command",
+            "command": "$HOME/.claude/hooks/session-start.sh"
+          }
+        ]
       }
     ]
   },
@@ -163,7 +300,10 @@
   },
   "extraKnownMarketplaces": {
     "claude-plugins-official": {
-      "source": { "source": "github", "repo": "anthropics/claude-plugins-official" }
+      "source": {
+        "source": "github",
+        "repo": "anthropics/claude-plugins-official"
+      }
     },
     "anthropic-agent-skills": {
       "source": { "source": "github", "repo": "anthropics/skills" }
