@@ -46,7 +46,11 @@ state_file="$state_dir/session-${session_id}.jsonl"
 
 edited_files=""
 if [[ -f "$state_file" ]]; then
-  edited_files=$(jq -r 'select(.type == "edit") | .file' "$state_file" 2>/dev/null | sort -u | head -20) || true
+  if ! command -v jq >/dev/null 2>&1; then
+    echo "obsidian-session-stop: jq not found, skipping edited files" >&2
+  else
+    edited_files=$(jq -r 'select(.type == "edit") | .file' "$state_file" 2>/dev/null | sort -u | head -20) || true
+  fi
 fi
 
 # Build session note into a temp file, then atomic rename
@@ -97,11 +101,11 @@ if ! mv "$tmp_file" "$session_file" 2>/dev/null; then
   exit 1
 fi
 
-# Append to Daily Note
+# Append to Daily Note — fail explicitly on write errors
 daily_file="$VAULT/AI/Daily/${date_str}.md"
 
 if [[ ! -f "$daily_file" ]]; then
-  cat > "$daily_file" <<DAILY
+  if ! cat > "$daily_file" <<DAILY
 ---
 date: $date_str
 tags: [daily]
@@ -112,17 +116,27 @@ tags: [daily]
 ## Sessions
 
 DAILY
+  then
+    echo "obsidian-session-stop: failed to create daily note: $daily_file" >&2
+    exit 1
+  fi
 fi
 
 # Append session link under the project heading
 if ! grep -q "^### $project_name" "$daily_file" 2>/dev/null; then
-  printf '\n### %s\n' "$project_name" >> "$daily_file"
+  if ! printf '\n### %s\n' "$project_name" >> "$daily_file"; then
+    echo "obsidian-session-stop: failed to append project heading to daily note" >&2
+    exit 1
+  fi
 fi
-printf -- '- [[AI/Sessions/%s/%s-%s|%s %s]]\n' \
+if ! printf -- '- [[AI/Sessions/%s/%s-%s|%s %s]]\n' \
   "$project_name" "$date_str" "$time_str" \
-  "$project_name" "$(date +%H:%M)" >> "$daily_file"
+  "$project_name" "$(date +%H:%M)" >> "$daily_file"; then
+  echo "obsidian-session-stop: failed to append session link to daily note" >&2
+  exit 1
+fi
 
-# Only delete state file after both writes succeeded
+# Only delete state file after both session note and daily note succeeded
 rm -f "$state_file" 2>/dev/null || true
 
 # Clean up stale state files older than 1 day (orphaned sessions)

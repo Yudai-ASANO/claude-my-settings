@@ -22,7 +22,7 @@ run_formatter() {
   local cmd="$1"
   shift
   if command -v "$cmd" >/dev/null 2>&1; then
-    "$cmd" "$@" 2>/dev/null || true
+    "$cmd" "$@" || echo "auto-format: $cmd failed for ${*: -1}" >&2
   fi
 }
 
@@ -32,7 +32,7 @@ case "$ext" in
     ;;
   py)
     if command -v ruff >/dev/null 2>&1; then
-      ruff format "$file_path" 2>/dev/null || true
+      ruff format "$file_path" || echo "auto-format: ruff failed for $file_path" >&2
     else
       run_formatter black --quiet "$file_path"
     fi

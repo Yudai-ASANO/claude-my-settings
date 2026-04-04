@@ -12,7 +12,11 @@ LOG_DIR="$HOME/.claude/logs"
 LOG_FILE="$LOG_DIR/bash-audit-$(date +%Y-%m).log"
 
 # Ensure log directory exists with restrictive permissions
-mkdir -p "$LOG_DIR" 2>/dev/null || true
+if ! mkdir -p "$LOG_DIR" 2>/dev/null; then
+  echo "bash-audit-log: cannot create log directory: $LOG_DIR" >&2
+  printf '%s\n' "$input"
+  exit 0
+fi
 chmod 700 "$LOG_DIR" 2>/dev/null || true
 
 # Clean up logs older than 90 days
