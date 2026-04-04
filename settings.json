@@ -133,7 +133,7 @@
         "hooks": [{ "type": "command", "command": "$HOME/.claude/hooks/bash-audit-log.sh", "async": true }]
       },
       {
-        "matcher": "tool == \"Write\" || tool == \"Edit\" || tool == \"MultiEdit\" || tool == \"Bash\"",
+        "matcher": "tool == \"Write\" || tool == \"Edit\" || tool == \"MultiEdit\"",
         "hooks": [{ "type": "command", "command": "$HOME/.claude/hooks/obsidian-session-track.sh", "async": true }]
       }
     ],

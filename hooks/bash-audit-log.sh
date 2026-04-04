@@ -11,11 +11,12 @@ input=$(cat)
 LOG_DIR="$HOME/.claude/logs"
 LOG_FILE="$LOG_DIR/bash-audit-$(date +%Y-%m).log"
 
-# Ensure log directory exists
+# Ensure log directory exists with restrictive permissions
 mkdir -p "$LOG_DIR" 2>/dev/null || true
+chmod 700 "$LOG_DIR" 2>/dev/null || true
 
-# Clean up logs older than 6 months
-find "$LOG_DIR" -name 'bash-audit-*.log' -mtime +180 -delete 2>/dev/null || true
+# Clean up logs older than 90 days
+find "$LOG_DIR" -name 'bash-audit-*.log' -mtime +90 -delete 2>/dev/null || true
 
 # Extract command from hook input
 cmd=$(printf '%s' "$input" | jq -r '.tool_input.command // empty')
@@ -40,6 +41,7 @@ if [[ -n "$cmd" ]]; then
   timestamp=$(date +%Y-%m-%dT%H:%M:%S%z)
   cwd=$(printf '%s' "$input" | jq -r '.cwd // "unknown"')
   printf '[%s] cwd=%s cmd=%s\n' "$timestamp" "$cwd" "$redacted" >> "$LOG_FILE" 2>/dev/null || true
+  chmod 600 "$LOG_FILE" 2>/dev/null || true
 fi
 
 # Pass through the original input
