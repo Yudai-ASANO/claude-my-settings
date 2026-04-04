@@ -113,6 +113,10 @@
       {
         "matcher": "*",
         "hooks": [{ "type": "command", "command": "$HOME/.claude/hooks/desktop-notify.sh", "async": true }]
+      },
+      {
+        "matcher": "*",
+        "hooks": [{ "type": "command", "command": "$HOME/.claude/hooks/obsidian-session-stop.sh", "async": true }]
       }
     ],
     "PostToolUse": [
@@ -127,6 +131,10 @@
       {
         "matcher": "tool == \"Bash\"",
         "hooks": [{ "type": "command", "command": "$HOME/.claude/hooks/bash-audit-log.sh", "async": true }]
+      },
+      {
+        "matcher": "tool == \"Write\" || tool == \"Edit\" || tool == \"MultiEdit\" || tool == \"Bash\"",
+        "hooks": [{ "type": "command", "command": "$HOME/.claude/hooks/obsidian-session-track.sh", "async": true }]
       }
     ],
     "SessionStart": [
