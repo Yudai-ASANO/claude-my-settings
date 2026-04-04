@@ -2,7 +2,9 @@
   "$schema": "https://json.schemastore.org/claude-code-settings.json",
   "env": {
     "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1",
-    "CLAUDE_AUTOCOMPACT_PCT_OVERRIDE": "80"
+    "CLAUDE_AUTOCOMPACT_PCT_OVERRIDE": "80",
+    "DISABLE_TELEMETRY": "1",
+    "DISABLE_ERROR_REPORTING": "1"
   },
   "attribution": { "commit": "", "pr": "" },
   "permissions": {
@@ -25,7 +27,8 @@
       "Bash(pwd)", "Bash(jq *)", "Bash(cut *)", "Bash(tr *)",
       "Bash(tar:*)", "Bash(unzip:*)", "Bash(zip:*)",
       "Bash(python3 --version)", "Bash(node --version)", "Bash(npm --version)",
-      "Bash(pnpm --version)", "Bash(git --version)"
+      "Bash(pnpm --version)", "Bash(git --version)",
+      "Bash(obsidian *)", "Bash(defuddle *)"
     ],
     "ask": [
       "Bash(rm *)",
@@ -114,8 +117,16 @@
     ],
     "PostToolUse": [
       {
+        "matcher": "tool == \"Write\" || tool == \"Edit\" || tool == \"MultiEdit\"",
+        "hooks": [{ "type": "command", "command": "$HOME/.claude/hooks/auto-format.sh" }]
+      },
+      {
         "matcher": "tool == \"Write\" && tool_input.file_path matches \"(CLAUDE|AGENTS)\\\\.md$\"",
         "hooks": [{ "type": "command", "command": "$HOME/.claude/hooks/check-doc-size.sh" }]
+      },
+      {
+        "matcher": "tool == \"Bash\"",
+        "hooks": [{ "type": "command", "command": "$HOME/.claude/hooks/bash-audit-log.sh", "async": true }]
       }
     ],
     "SessionStart": [
@@ -155,6 +166,7 @@
   },
   "language": "ja",
   "autoCompact": true,
+  "cleanupPeriodDays": 365,
   "disableBypassPermissionsMode": "disable",
   "alwaysThinkingEnabled": true
 }

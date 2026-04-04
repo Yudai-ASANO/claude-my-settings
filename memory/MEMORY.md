@@ -12,6 +12,8 @@
 | [context-engineering.md](context-engineering.md) | CLAUDE.md ロード戦略、rules 活用、Settings 優先チェーン、Auto Memory 仕様                |
 | [settings-reference.md](settings-reference.md)   | モデル選択、環境変数、パーミッション、MCP ツール、Hook イベント                          |
 
+| [obsidian-vault.md](obsidian-vault.md)           | Obsidian vault パス（~/Developer/obsidian）と運用方針                                    |
+
 ## キーポイント（頻繁に参照する知見）
 
 - CLAUDE.md は 150-200行以内に収める。超過でアドヒアランス低下
