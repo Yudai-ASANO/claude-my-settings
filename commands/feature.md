@@ -8,6 +8,12 @@ $ARGUMENTS
 
 ---
 
+## (Optional) 事前インタビュー（grill-me スキル）
+
+タスクの要件が曖昧な場合、Phase 0 に入る前に `/grill-me $ARGUMENTS` でユーザーに徹底インタビューし、共有理解を形成することを提案してよい。grill-me セッション完了後、得られた合意内容を Research Report の入力として活用する。
+
+---
+
 ## Phase 0: 調査（researcher エージェント）
 
 Agent ツールで `researcher` エージェントを起動する:

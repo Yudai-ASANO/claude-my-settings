@@ -19,6 +19,7 @@ Claude Code ハーネス設定管理リポジトリ。agents, commands, rules, h
 - `/feature <説明>` — 新機能（Phase 0-7 全自動）
 - `/bugfix <説明>` — バグ修正（Phase 0-3）
 - `/refactor <説明>` — リファクタリング（Phase 0-3）
+- `/grill-me <説明>` — 計画・設計の深掘りインタビュー
 - `/research <対象>` — 独立調査
 - `/plan <説明>` — Sprint Contract 生成
 - `/review` — コード + セキュリティレビュー
